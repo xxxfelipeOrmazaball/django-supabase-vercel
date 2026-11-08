@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro de estudiantes</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;background:#f4f7fb;color:#18212d;margin:0;padding:40px 16px}
+main{max-width:680px;margin:auto}.panel{background:#fff;border:1px solid #e1e6ee;border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:0 5px 18px rgba(10,30,60,.05)}
+h1{font-size:28px;margin:0 0 8px}.sub{color:#64748b;margin:0 0 20px}label{display:block;font-weight:600;margin:14px 0 5px}
+input{width:100%;box-sizing:border-box;font-size:16px;padding:11px;border-radius:8px;border:1px solid #b9c4d2}
+button{margin-top:18px;background:#175cd3;color:white;border:0;padding:12px 18px;border-radius:8px;font-size:15px;cursor:pointer}
+ul{list-style:none;padding:0;margin:0}li{padding:14px 0;border-bottom:1px solid #e6ebf2}li:last-child{border:0}
+small{display:block;color:#64748b;margin-top:3px}.errorlist{color:#b91c1c}
+</style></head><body><main>
+<section class="panel"><h1>Registro de estudiantes</h1><p class="sub">Proyecto de demostración con Django y Supabase</p>
+<form method="post">{% csrf_token %}
+<label for="{{ form.nombre.id_for_label }}">Nombre</label>{{ form.nombre }}{{ form.nombre.errors }}
+<label for="{{ form.correo.id_for_label }}">Correo</label>{{ form.correo }}{{ form.correo.errors }}
+<button type="submit">Guardar estudiante</button></form></section>
+<section class="panel"><h2>Estudiantes registrados ({{ estudiantes|length }})</h2>
+<ul>{% for estudiante in estudiantes %}<li><strong>{{ estudiante.nombre }}</strong><small>{{ estudiante.correo }}</small></li>{% empty %}<li>Aún no hay estudiantes registrados.</li>{% endfor %}</ul>
+</section></main></body></html>
